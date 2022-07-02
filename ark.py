@@ -1,4 +1,5 @@
 from login import token_api, login
+from cards import analyze_cards
 from config import Config
 
 
@@ -25,11 +26,10 @@ def get_token():
 
 def run():
     token = get_token()
+    analyze_cards(token)
 
     print('token is: ', token)
 
 
 if __name__ == '__main__':
-    # user_info(TOKEN)
-
     run()
