@@ -1,6 +1,6 @@
 from login import token_api, login
 from cards import analyze_cards
-from config import Config
+from config import Config, persist
 
 
 # Get token from cookie or config.yaml
@@ -26,7 +26,9 @@ def get_token():
 
 def run():
     token = get_token()
-    analyze_cards(token)
+    cards = analyze_cards(token)
+    persist(cards)
+    # print(list(filter(lambda x: x['isNew'], cards)))
 
     print('token is: ', token)
 

@@ -36,6 +36,7 @@ def analyze_cards(token):
         # Get cards list
         lists = get_cards(token, str(pagination['current']))['list']
         cards.extend(process_cards(lists))
+        print('Page: ', pagination['current'])
         pagination['current'] += 1
 
     return cards

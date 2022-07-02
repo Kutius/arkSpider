@@ -38,6 +38,6 @@ class Config:
             yaml.dump(__config, f)
 
 
-if __name__ == '__main__':
-    config = Config('config.yaml')
-    print(config.config)
+def persist(data):
+    with open('./data.yaml', 'w', encoding='utf-8') as f:
+        yaml.dump(data, f)
