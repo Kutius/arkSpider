@@ -1,7 +1,5 @@
 import requests
 
-TOKEN = 'eLFmOwKRXR1IQlvrOZ406NU1'
-
 
 # Login by phone and password
 def login(phone, pwd):
