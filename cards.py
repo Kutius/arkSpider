@@ -11,7 +11,7 @@ def get_cards(token, page='1'):
     return res.json()['data']
 
 
-# Extract information for each piece of list
+# Extract information for each chars
 def process_cards(lists):
     cards = []
 
@@ -28,7 +28,7 @@ def process_cards(lists):
     return cards
 
 
-# Analyze cards
+# Convert to card list
 def analyze_cards(token):
     cards = []
     pagination = get_cards(token)['pagination']
