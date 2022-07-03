@@ -9,7 +9,7 @@ Analyses arknights cards data.
 
 # Installation
 ```bash
-pip install requests pyyaml
+pip install requests pyyaml questionary
 ```
 
 # Usage

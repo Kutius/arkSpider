@@ -1,6 +1,8 @@
+import questionary
+
 from login import token_api, login
 from cards import convert_cards
-from config import Config, persist
+from config import Config, persist, read_data
 
 
 # Get token from cookie or config.yaml
@@ -11,10 +13,11 @@ def get_token():
             cookie = config.cookie
             token = token_api(cookie)
         else:
-            print('No config, Please login first')
-            phone = input('Please input your phone:')
-            pwd = input('Please input your password:')
-            token = login(phone, pwd)
+            print('❗No config, Please login first')
+            user = questionary.form(
+                phone=questionary.text('Please input your phone:'),
+                pwd=questionary.password('Please input your password:')).ask()
+            token = login(user.phone, user.pwd)
 
         config.setToken(token)
     else:
@@ -25,12 +28,27 @@ def get_token():
 
 
 def run():
-    token = get_token()
-    cards = convert_cards(token)
-    persist(cards)
-    # print(list(filter(lambda x: x['isNew'], cards)))
+    choose = questionary.select(
+        "How to get data?",
+        choices=[
+            "Default",
+            "Local",
+            "Cookie",
+        ]).ask()
+    match choose:
+        case 'Default':
+            token = get_token()
+            cards = convert_cards(token)
+            persist(cards)
+            print('token is: ', token)
+        case 'Local':
+            cards = read_data()
+        case 'Cookie':
+            cookie = questionary.text('Please input your cookie:')
+            token = token_api(cookie)
+            cards = convert_cards(token)
 
-    print('token is: ', token)
+    print(list(filter(lambda x: x['rarity'] == 5, cards)))
 
 
 if __name__ == '__main__':
