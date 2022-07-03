@@ -41,3 +41,10 @@ class Config:
 def persist(data):
     with open('./data.yaml', 'w', encoding='utf-8') as f:
         yaml.dump(data, f, encoding='utf-8', allow_unicode=True)
+
+
+# Read data from data.yaml
+def read_data():
+    with open('./data.yaml', encoding='utf-8') as f:
+        data = yaml.load(f, Loader=yaml.FullLoader)
+    return data
