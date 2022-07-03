@@ -1,5 +1,5 @@
 from login import token_api, login
-from cards import analyze_cards
+from cards import convert_cards
 from config import Config, persist
 
 
@@ -26,7 +26,7 @@ def get_token():
 
 def run():
     token = get_token()
-    cards = analyze_cards(token)
+    cards = convert_cards(token)
     persist(cards)
     # print(list(filter(lambda x: x['isNew'], cards)))
 

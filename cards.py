@@ -29,7 +29,7 @@ def process_cards(lists):
 
 
 # Convert to card list
-def analyze_cards(token):
+def convert_cards(token):
     cards = []
     pagination = get_cards(token)['pagination']
     while pagination['current'] <= pagination['total']:
