@@ -6,11 +6,11 @@ class Config:
     def __init__(self, config_file):
         # if file not exist, create it
         if not os.path.exists(config_file):
-            with open(config_file, 'w', encoding='utf_8') as f:
+            with open(config_file, 'w', encoding='utf-8') as f:
                 yaml.dump({}, f)
 
         # Load config file
-        with open(config_file, encoding='utf_8') as f:
+        with open(config_file, encoding='utf-8') as f:
             __config = yaml.load(f, Loader=yaml.FullLoader)
 
         # Initialize config
@@ -34,10 +34,10 @@ class Config:
             'cookie': self.cookie,
             'token': self.token,
         }
-        with open('config.yaml', 'w', encoding='utf_8') as f:
+        with open('config.yaml', 'w', encoding='utf-8') as f:
             yaml.dump(__config, f)
 
 
 def persist(data):
     with open('./data.yaml', 'w', encoding='utf-8') as f:
-        yaml.dump(data, f)
+        yaml.dump(data, f, encoding='utf-8', allow_unicode=True)
