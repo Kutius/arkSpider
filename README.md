@@ -6,6 +6,9 @@ arkSpider
 
 Analyses arknights cards data.
 
+# Requirements
+
+python 3.10+
 
 # Installation
 ```bash
