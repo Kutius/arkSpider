@@ -2,6 +2,7 @@ import questionary
 
 from login import token_api, login
 from cards import convert_cards
+from analysis import summary
 from config import Config, persist, read_data
 
 
@@ -48,7 +49,12 @@ def run():
             token = token_api(cookie)
             cards = convert_cards(token)
 
-    print(list(filter(lambda x: x['rarity'] == 5, cards)))
+    # print('Total 6🌟 cards: ', byRarity(cards))
+    # per = summary(cards)
+    # questionary.print(
+    #     'On average, one six-star character is drawn for every '+ str(per),
+    #     style='italic green')
+    summary(cards)
 
 
 if __name__ == '__main__':
